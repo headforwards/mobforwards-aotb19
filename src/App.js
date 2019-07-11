@@ -1,16 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import List from './components/List';
-import dataService from './services/dataService';
+import React from "react";
+import "./App.css";
+import List from "./components/List";
+import dataService from "./services/dataService";
 
-function App() {
-  const rooms = dataService.rooms();
-  return (
-    <div className="App">
-      <List rooms={rooms}/>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    rooms: []
+  };
+  componentDidMount() {
+    dataService.getRooms().on("value", snapshot => {
+      const roomstuff = snapshot.val().rooms;
+      this.setState({ rooms: roomstuff });
+    });
+  }
+  render() {
+    return (
+      <div className="App">
+        <List rooms={this.state.rooms} />
+      </div>
+    );
+  }
 }
 
 export default App;
