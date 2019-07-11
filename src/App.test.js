@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import {mount, shallow} from 'enzyme'
 import 'jest-enzyme'
-import List from './components/list';
 import dataService from './services/dataService';
 
 jest.mock('./services/dataService', () => {
@@ -24,6 +23,7 @@ describe('app test suite',()=> {
     let rooms = dataService.rooms();
     expect(component.find("[data-room-list]")).toHaveLength(1);
   });
+  
   it('data service rooms is called',() => {
     let component = shallow(<App/>);
     expect(dataService.rooms).toHaveBeenCalled();

@@ -4,20 +4,20 @@ import React from 'react';
 import dataService from '../services/dataService';
 import { JestEnvironment } from '@jest/environment';
 
-jest.mock('../services/dataService',()=>{
-    return{
-        rooms:()=>([{location_name:"studio 1"},{location_name:"studio 2"}])
-    }
+jest.mock('../services/dataService', () => {
+    return {
+        getData: async () => { }
+    };
 })
 
 
 describe("Listtestsuite", () => {
 
-    let expectedRooms = dataService.rooms();
-
-    let component;
+    let component, expectedRooms;
 
     beforeEach(() => {
+        expectedRooms = [{ location_name: "studio 1" }, { location_name: "studio 2" }];
+
         component = shallow(<List rooms={expectedRooms} />);
     })
 
