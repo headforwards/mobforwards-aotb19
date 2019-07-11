@@ -1,7 +1,9 @@
 import React from "react";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
 import List from "./components/List";
 import dataService from "./services/dataService";
+import Room from "./components/Room";
 
 class App extends React.Component {
   state = {
@@ -27,6 +29,9 @@ class App extends React.Component {
 
     return (
       <div className="App">
+        <Router>
+          <Route path="/rooms/:name" component={Room} />
+        </Router>
         <List rooms={this.state.rooms} />
         {/* <div>{speakers}</div> */}
       </div>
