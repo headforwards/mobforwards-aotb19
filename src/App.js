@@ -21,14 +21,14 @@ class App extends React.Component {
     });
   }
   render() {
-    var speakers = this.state.speakers.map(s => (
-      <p>{s.person_display_last_name}</p>
-    ));
+    // var speakers = this.state.speakers.map(s => (
+    //   <p>{s.person_display_last_name}</p>
+    // ));
 
     return (
       <div className="App">
         <List rooms={this.state.rooms} />
-        <div>{speakers}</div>
+        {/* <div>{speakers}</div> */}
       </div>
     );
   }

@@ -5,7 +5,7 @@ const List = ({ rooms }) => (
     {rooms.length &&
       rooms.length > 0 &&
       rooms.map((room, i) => (
-        <li key={i} data-room>
+        <li key={i} data-room style={{ listStyle: "none" }}>
           {room.location_name}
         </li>
       ))}
