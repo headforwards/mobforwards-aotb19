@@ -12,14 +12,13 @@ class App extends React.Component {
     events: []
   };
 
-  componentDidMount() {
-    dataService.getRooms().on("value", snapshot => {
-      const db = snapshot.val();
-      this.setState({
-        rooms: db.rooms,
-        speakers: db.speakers,
-        events: db.events
-      });
+  async componentDidMount() {
+    var db = await dataService.getData();
+
+    this.setState({
+      rooms: db.rooms,
+      speakers: db.speakers,
+      events: db.events
     });
   }
   render() {

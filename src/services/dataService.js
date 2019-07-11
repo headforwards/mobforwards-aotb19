@@ -3,8 +3,14 @@ import FirebaseConfig from "../config";
 Firebase.initializeApp(FirebaseConfig);
 
 const dataService = {
-  getRooms: () => {
-    return Firebase.database().ref("/");
+  getData: () => {
+    var p = new Promise((resolve) => {
+      Firebase.database().ref("/").on("value", snapshot => {
+        resolve(snapshot.val());
+      });
+    });
+
+    return p;
   }
 };
 

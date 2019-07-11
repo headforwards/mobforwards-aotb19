@@ -1,49 +1,33 @@
 import dataService from "./dataService";
-jest.mock("./dataService", () => {
+import Firebase from "firebase";
+import { exportAllDeclaration } from "@babel/types";
+
+let mockData = [];
+
+jest.mock("firebase", () => {
+
   return {
-    getRooms: jest.fn(() => Promise.resolve()),
-    rooms: jest.fn(() =>
-      [
-        {
-          location_name: "Studio F"
-        },
-        {
-          location_name: "Studio G"
-        },
-        {
-          location_name: "Studio L"
-        },
-        {
-          location_name: "Roof Garden"
-        },
-        {
-          location_name: "Gyllyngvase Beach"
-        },
-        {
-          location_name: "Studio K"
-        },
-        {
-          location_name: "Studio A"
-        },
-        {
-          location_name: "Studio E"
-        },
-        {
-          location_name: "Prince of Wales Pier"
-        },
-        {
-          location_name: "Registration"
-        },
-        {
-          location_name: "Food Vendors"
+    initializeApp : jest.fn(),
+
+    database:() => {
+      return {
+        ref :() => {
+          return {
+            on : jest.fn().mockImplementation((value, func) => {
+              var snapshot = {
+                val: () => mockData
+              };
+                func(snapshot);
+            })
+          }
         }
-      ].sort((a, b) => a.location_name.localeCompare(b.location_name))
-    )
-  };
+      }
+    }
+  }
 });
 
 describe("dataServiceTest", () => {
-  it("gets the rooms", () => {
+/*   it("gets the rooms", () => {
     expect(dataService.rooms()).toHaveLength(11);
   });
 
@@ -91,5 +75,16 @@ describe("dataServiceTest", () => {
     dataService.getRooms.mockReturnValueOnce(expectedRooms);
     var rooms = await dataService.getRooms();
     expect(rooms).toEqual(expectedRooms);
+  });
+ */
+  it("gets the data from firebase", async () => {
+    mockData = {
+      rooms: [],
+      speakers: [],
+      events: []
+    };
+
+    var data = await dataService.getData();
+    expect(data).toEqual(mockData);
   });
 });
