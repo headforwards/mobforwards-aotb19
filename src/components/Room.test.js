@@ -63,21 +63,21 @@ describe("room test suite", () => {
     expect(component.find("[data-talk]")).toHaveLength(2);
   });
 
-  it("shows the talk time", async () => {
-    await component.update();
-    expect(
-      component
-        .find("[data-talk-time]")
-        .at(0)
-        .text()
-    ).toBe("21:30 - 22:30");
-  });
+  // it("shows the talk time", async () => {
+  //   await component.update();
+  //   expect(
+  //     component
+  //       .find("[data-talk-time]")
+  //       .at(0)
+  //       .text()
+  //   ).toBe("21:30 - 22:30");
+  // });
 
-  it("orders the time in ascending order", async () => {
-    await component.update();
-    let rooms = component.find("h3");
-    expect(rooms.at(0).text()).toBe("21:30 - 22:30");
-  });
+  // it("orders the time in ascending order", async () => {
+  //   await component.update();
+  //   let rooms = component.find("h3");
+  //   expect(rooms.at(0).text()).toBe("21:30 - 22:30");
+  // });
 
   it("does not show times in the past", async () => {
     await component.update();
