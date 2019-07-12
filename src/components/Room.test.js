@@ -14,7 +14,9 @@ jest.mock("../services/dataService", () => {
           asset_url: "url",
           bio: "their bio",
           website: "https://hf.com",
-          twitter_url: "https://yrl.com"
+          twitter_url: "https://yrl.com",
+          facebook_url: "https://dfghjnm.com",
+          linkedin_url: "https://sdfghfd.com"
         }
       ],
       talks: [
@@ -159,5 +161,25 @@ describe("room test suite", () => {
         .at(1)
         .text()
     ).toBe("Twitter:https://yrl.com");
+  });
+
+  it("it displays the facebook handle", async () => {
+    await component.update();
+    expect(
+      component
+        .find("[data-facebook-handle]")
+        .at(1)
+        .text()
+    ).toBe("Facebook:https://dfghjnm.com");
+  });
+
+  it("it displays the linkedin handle", async () => {
+    await component.update();
+    expect(
+      component
+        .find("[data-linkedin-handle]")
+        .at(1)
+        .text()
+    ).toBe("LinkedIn:https://sdfghfd.com");
   });
 });

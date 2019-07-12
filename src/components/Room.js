@@ -50,6 +50,8 @@ export default class Room extends Component {
         const speakerBio = speaker.bio;
         const speakerWebsite = speaker.website;
         const twitter_url = speaker.twitter_url;
+        const facebook_url = speaker.facebook_url;
+        const linkedin_url = speaker.linkedin_url;
         return (
           <div data-talk key={event.name}>
             <span className="pr-2" data-talk-time>
@@ -73,6 +75,16 @@ export default class Room extends Component {
                 <div>
                   <a href={twitter_url} data-twitter-handle>
                     Twitter:{twitter_url}
+                  </a>
+                </div>
+                <div>
+                  <a href={facebook_url} data-facebook-handle>
+                    Facebook:{facebook_url}
+                  </a>
+                </div>
+                <div>
+                  <a href={linkedin_url} data-linkedin-handle>
+                    LinkedIn:{linkedin_url}
                   </a>
                 </div>
               </div>
