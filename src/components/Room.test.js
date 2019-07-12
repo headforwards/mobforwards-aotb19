@@ -36,7 +36,7 @@ describe("room test suite", () => {
   });
 
   it("shows the room name", () => {
-    expect(component.find("h1").text()).toBe(props.match.params.name);
+    expect(component.find("h2").text()).toBe(props.match.params.name);
   });
 
   it("lists the talk names", async () => {
@@ -51,6 +51,6 @@ describe("room test suite", () => {
         .find("[data-talk-time]")
         .at(0)
         .text()
-    ).toBe("2019-07-11T10:30:00Z");
+    ).toBe("11:30");
   });
 });

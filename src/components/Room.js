@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import dataService from "../services/dataService";
+import moment from "moment";
 
 export default class Room extends Component {
   constructor() {
@@ -21,17 +22,21 @@ export default class Room extends Component {
     const filteredEvents = events
       .filter(event => event.location_name === params.name)
       .map(event => {
+        const displayDate = moment(event.start_datetime).format("HH:mm");
+
         return (
           <p data-talk key={event.name}>
+            <span className="pr-2" data-talk-time>
+              <strong>{displayDate}</strong>
+            </span>
             {event.name}
-            <span data-talk-time>{event.start_datetime}</span>
           </p>
         );
       });
 
     return (
       <div>
-        <h1>{params.name}</h1>
+        <h2>{params.name}</h2>
         {filteredEvents}
       </div>
     );
