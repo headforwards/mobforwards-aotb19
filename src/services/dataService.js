@@ -4,10 +4,12 @@ Firebase.initializeApp(FirebaseConfig);
 
 const dataService = {
   getData: () => {
-    var p = new Promise((resolve) => {
-      Firebase.database().ref("/").on("value", snapshot => {
-        resolve(snapshot.val());
-      });
+    var p = new Promise((resolve, reject) => {
+      Firebase.database()
+        .ref("/")
+        .on("value", snapshot => {
+          resolve(snapshot.val());
+        });
     });
 
     return p;

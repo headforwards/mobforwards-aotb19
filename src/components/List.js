@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import dataService from "../services/dataService";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 
-export default class List extends Component {
+export class List extends Component {
   state = {
     rooms: [],
     speakers: [],
@@ -36,3 +36,5 @@ export default class List extends Component {
     );
   }
 }
+
+export default withRouter(List);
