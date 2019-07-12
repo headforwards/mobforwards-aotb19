@@ -9,7 +9,8 @@ jest.mock("../services/dataService", () => {
       speakers: [
         {
           person_display_last_name: "Andrew Nesling",
-          oid: "IJrac4kPt8"
+          oid: "IJrac4kPt8",
+          asset_url: "url"
         }
       ],
       talks: [
@@ -103,5 +104,15 @@ describe("room test suite", () => {
         .at(0)
         .text()
     ).toBe("Andrew Nesling");
+  });
+
+  it("displays the speaker's image", async () => {
+    await component.update();
+    expect(
+      component
+        .find("[data-speaker-image]")
+        .at(0)
+        .props().src
+    ).toBe("url");
   });
 });

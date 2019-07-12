@@ -35,9 +35,9 @@ export default class Room extends Component {
         const start = moment(event.start_datetime).format("HH:mm");
         const end = moment(event.end_datetime).format("HH:mm");
         const presenterId = event.presenter_oids[0];
-        const speakername = speakers.find(
-          speaker => speaker.oid === presenterId
-        ).person_display_last_name;
+        const speaker = speakers.find(speaker => speaker.oid === presenterId);
+        const speakername = speaker.person_display_last_name;
+        const speakerimage = speaker.asset_url;
         return (
           <div data-talk key={event.name}>
             <span className="pr-2" data-talk-time>
@@ -47,6 +47,7 @@ export default class Room extends Component {
             </span>
             <h4>{event.name}</h4>
             <h5 data-speaker-name>{speakername}</h5>
+            <img data-speaker-image src={speakerimage} />
             <p>{event.description}</p>
           </div>
         );
